@@ -1,0 +1,9 @@
+# Mac Ignore
+.DS_Store
+
+# Maven Ignore
+target
+
+# Netbeans Ignore
+nbproject/private/
+nb-configuration.xml
