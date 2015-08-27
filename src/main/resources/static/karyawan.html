@@ -84,29 +84,41 @@
                             </div>
                             <div class="modal-body">
 
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" name="form">
                                     <div class="form-group">
                                         <label for="inputNip" class="col-sm-2 control-label">NIP</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputNip" 
+                                            <input type="text" class="form-control" id="inputNip" name="inputNip"
                                                    placeholder="Nomor Induk Pegawai"
-                                                   ng-model="karyawan.nip">
+                                                   ng-model="karyawan.nip"
+                                                   required="true">
+                                            <span class="help-block" ng-show="form.inputNip.$error.required">
+                                                NIP harus diisi
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" ng-class="error('inputNama')">
                                         <label for="inputNama" class="col-sm-2 control-label">Nama</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputNama" 
+                                            <input type="text" class="form-control" id="inputNama" name="inputNama"
                                                    placeholder="Nama Karyawan"
-                                                   ng-model="karyawan.nama">
+                                                   ng-model="karyawan.nama"
+                                                   required="true">
+                                            <span class="help-block" ng-show="form.inputNama.$error.required">
+                                                Nama harus diisi
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputTanggal" class="col-sm-2 control-label">Tanggal Lahir</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputTanggal" 
+                                            <input type="text" class="form-control" id="inputTanggal" name="inputTanggal"
                                                    placeholder="yyyy-MM-dd"
-                                                   ng-model="karyawan.tanggalLahir">
+                                                   ng-model="karyawan.tanggalLahir"
+                                                   required="true">
+                                            <span class="help-block" ng-show="form.inputTanggal.$error.required">
+                                                Tanggal lahir harus diisi
+                                            </span>
                                         </div>
                                     </div>
                                 </form>
@@ -114,7 +126,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="simpanKaryawan()">Save changes</button>
+                                <button type="button" class="btn btn-primary" 
+
+                                        data-dismiss="modal" 
+                                        ng-click="simpanKaryawan()" ng-disabled="form.$invalid">Save changes</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
