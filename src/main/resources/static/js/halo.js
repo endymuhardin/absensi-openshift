@@ -47,6 +47,18 @@ myApp.controller('KaryawanController', ['$scope', '$http', function($scope, $htt
         );
     };
     
+    $scope.hapusKaryawan = function(k){
+        var promise = $http.delete('/karyawan/'+k.id);
+        promise.then(
+            function(responSukses){
+                $scope.updateTabelKaryawan();
+            }, 
+            function(responGagal){
+                alert("Error Status : "+responGagal.status);
+            }
+        );
+    };
+    
     $scope.clearForm = function(){
         $scope.karyawan = {};
     };
