@@ -29,6 +29,12 @@ public class KaryawanController {
         karyawanDao.save(k);
     }
     
+    @RequestMapping(value = "/karyawan/{id}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void update(@RequestBody Karyawan k){
+        karyawanDao.save(k);
+    }
+    
     @RequestMapping(value = "/karyawan/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void hapus(@PathVariable("id") String id){

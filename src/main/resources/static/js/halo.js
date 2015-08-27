@@ -34,7 +34,18 @@ myApp.controller('KaryawanController', ['$scope', '$http', function($scope, $htt
         console.log("simpan karyawan");
         console.log($scope.karyawan);
         
-        var promise = $http.post('/karyawan/', $scope.karyawan);
+        var promise;
+        
+        // bila ada id, update
+        if($scope.karyawan.id){
+            // bila idempotent, gunakan put
+            // idempotent = aman untuk diulang2 tanpa mengubah kondisi akhir
+            promise = $http.put('/karyawan/'+$scope.karyawan.id, $scope.karyawan);
+        } else { // tidak ada id, create 
+            promise = $http.post('/karyawan/', $scope.karyawan);
+        }
+        
+        
         $scope.clearForm();
         
         promise.then(
@@ -57,6 +68,10 @@ myApp.controller('KaryawanController', ['$scope', '$http', function($scope, $htt
                 alert("Error Status : "+responGagal.status);
             }
         );
+    };
+    
+    $scope.editKaryawan = function(k) {
+        $scope.karyawan = k;
     };
     
     $scope.clearForm = function(){
