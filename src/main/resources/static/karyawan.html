@@ -36,7 +36,9 @@
                 <button class="btn btn-primary" ng-click="updateTabelKaryawan()">
                     Refresh Tabel
                 </button>
-                <button class="btn btn-primary">Tambah Data</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    Tambah Data
+                </button>
 
 
                 <div ng-hide="daftarKaryawan.totalElements && daftarKaryawan.totalElements > 0">
@@ -72,6 +74,51 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Edit Karyawan</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="inputNip" class="col-sm-2 control-label">NIP</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputNip" 
+                                                   placeholder="Nomor Induk Pegawai"
+                                                   ng-model="karyawan.nip">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNama" class="col-sm-2 control-label">Nama</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputNama" 
+                                                   placeholder="Nama Karyawan"
+                                                   ng-model="karyawan.nama">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputTanggal" class="col-sm-2 control-label">Tanggal Lahir</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputTanggal" 
+                                                   placeholder="yyyy-MM-dd"
+                                                   ng-model="karyawan.tanggalLahir">
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="simpanKaryawan()">Save changes</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </div>
 
         </div>

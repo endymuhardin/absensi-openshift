@@ -29,4 +29,25 @@ myApp.controller('KaryawanController', ['$scope', '$http', function($scope, $htt
             }
         );
     };
+    
+    $scope.simpanKaryawan = function(){
+        console.log("simpan karyawan");
+        console.log($scope.karyawan);
+        
+        var promise = $http.post('/karyawan/', $scope.karyawan);
+        $scope.clearForm();
+        
+        promise.then(
+            function(responSukses){
+                $scope.updateTabelKaryawan();
+            }, 
+            function(responGagal){
+                alert("Error Status : "+responGagal.status);
+            }
+        );
+    };
+    
+    $scope.clearForm = function(){
+        $scope.karyawan = {};
+    };
 }]);
