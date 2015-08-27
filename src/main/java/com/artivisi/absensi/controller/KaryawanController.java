@@ -2,6 +2,7 @@ package com.artivisi.absensi.controller;
 
 import com.artivisi.absensi.dao.KaryawanDao;
 import com.artivisi.absensi.entity.Karyawan;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,13 +26,13 @@ public class KaryawanController {
     
     @RequestMapping(value = "/karyawan/", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Karyawan k){
+    public void create(@RequestBody @Valid Karyawan k){
         karyawanDao.save(k);
     }
     
     @RequestMapping(value = "/karyawan/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody Karyawan k){
+    public void update(@RequestBody @Valid Karyawan k){
         karyawanDao.save(k);
     }
     
