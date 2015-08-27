@@ -11,17 +11,17 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-        
+
     </head>
     <body>
         <h1>Daftar Karyawan</h1>
-        
+
         <div ng-app="halo">
-            
+
             Nama : <input ng-model="nama">
             <br> Selamat pagi, {{nama}}
-            
-            
+
+
             <div ng-controller="EmailController">
                 <br> Masukkan email Anda : <input type="text" ng-model="email">
                 <button ng-click="tambahEmail()">Simpan</button>
@@ -31,45 +31,57 @@
                     <li>{{e}} | <button ng-click="hapusEmail(e)">hapus</button></li>
                 </ul>
             </div>
+            <hr>
+            <div ng-controller="KaryawanController">
+                <button class="btn btn-primary" ng-click="updateTabelKaryawan()">
+                    Refresh Tabel
+                </button>
+                <button class="btn btn-primary">Tambah Data</button>
+
+
+                <div ng-hide="daftarKaryawan.totalElements && daftarKaryawan.totalElements > 0">
+                    Data tidak ada
+                </div>
+
+                <div ng-show="daftarKaryawan.totalElements && daftarKaryawan.totalElements > 0">
+                    <table class="table table-condesed table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>NIP</th>
+                                <th>Nama</th>
+                                <th>Tanggal Lahir</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="k in daftarKaryawan.content">
+                                <td>{{k.nip}}</td>
+                                <td>{{k.nama}}</td>
+                                <td>{{k.tanggalLahir}}</td>
+                                <td>
+                                    <button class="btn btn-sm">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        edit
+                                    </button>
+                                    <button class="btn btn-sm">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        hapus
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
-        <hr>
-
-        <button class="btn btn-primary">Tambah Data</button>
-
-        <table class="table table-condesed table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>NIP</th>
-                    <th>Nama</th>
-                    <th>Tanggal Lahir</th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>123</td>
-                    <td>Endy</td>
-                    <td>17 Agustus 1945</td>
-                    <td>
-                        <button class="btn btn-sm">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            edit
-                        </button>
-                        <button class="btn btn-sm">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            hapus
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
         <script src="js/halo.js"></script>
     </body>
