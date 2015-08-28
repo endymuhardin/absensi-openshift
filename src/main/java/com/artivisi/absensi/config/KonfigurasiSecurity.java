@@ -30,7 +30,7 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .defaultSuccessUrl("/karyawan.html", true)
                 .failureUrl("/error.html")
-                .loginPage("/login.html").permitAll()
+                .loginPage("/login").permitAll()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/**/*.css").permitAll()
