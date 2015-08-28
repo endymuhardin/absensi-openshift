@@ -35,6 +35,7 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/**/*.css").permitAll()
                 .antMatchers("/**/*.js").permitAll()
+                .antMatchers("/halo").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .addFilterAfter(new CsrfAngularJsIntegration(), CsrfFilter.class)
