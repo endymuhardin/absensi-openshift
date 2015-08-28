@@ -1,5 +1,16 @@
 var myApp = angular.module('halo', []);
 
+myApp.controller('TopbarController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+        $scope.logout = function () {
+            alert('Logout');
+            $http.post('logout', {}).success(function () {
+                $location.path("/");
+            }).error(function (data) {
+                alert("Error : "+data);
+            });
+        };
+    }]);
+
 myApp.controller('EmailController', ['$scope', function ($scope) {
         $scope.daftarEmail = [
             "endy.muhardin@gmail.com"

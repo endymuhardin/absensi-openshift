@@ -13,10 +13,16 @@
 
 
     </head>
-    <body>
+    <body ng-app="halo">
+        <div ng-controller="TopbarController">
+            <button class="btn btn-primary" ng-click="logout()">
+                Logout
+            </button>
+        </div>
+
+        
         <h1>Daftar Karyawan</h1>
 
-        <div ng-app="halo">
 
             Nama : <input ng-model="nama">
             <br> Selamat pagi, {{nama}}
@@ -136,7 +142,6 @@
                 </div><!-- /.modal -->
             </div>
 
-        </div>
 
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
