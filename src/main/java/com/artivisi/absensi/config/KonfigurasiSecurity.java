@@ -27,9 +27,15 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin().and()
+                .formLogin()
+                .defaultSuccessUrl("/karyawan.html", true)
+                .failureUrl("/error.html")
+                .loginPage("/login.html").permitAll()
+                .and()
                 .authorizeRequests()
-                .antMatchers("/login.html").permitAll().anyRequest()
+                .antMatchers("/**/*.css").permitAll()
+                .antMatchers("/**/*.js").permitAll()
+                .anyRequest()
                 .authenticated().and()
                 .addFilterAfter(new CsrfAngularJsIntegration(), CsrfFilter.class)
                 .csrf().csrfTokenRepository(csrfTokenRepository());

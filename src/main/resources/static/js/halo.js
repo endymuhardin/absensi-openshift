@@ -1,6 +1,34 @@
-var myApp = angular.module('halo', []);
+var myApp = angular.module('halo', ['ngCookies']);
 
-myApp.controller('TopbarController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+/*
+myApp.config(function($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'XSRF-Token';
+    $httpProvider.defaults.xsrfHeaderName = 'X-XSRF-Token';
+});
+*/
+myApp.controller('TopbarController', ['$scope', '$http', '$location', '$cookies', function ($scope, $http, $location, $cookies) {
+        $scope.login = function () {
+            var req = {
+                method: 'POST',
+                url: 'login',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                  'X-XSRF-Token': $cookies.get('XSRF-Token'),
+                  Accept: 'text/html'
+                },
+                data: { username: $scope.username, password: $scope.password }
+               };
+
+            $http(req).then(
+                function(){
+                    alert('Sukses');
+                },
+                function(){
+                    alert('Gagal');
+                }
+            );
+        };
+        
         $scope.logout = function () {
             alert('Logout');
             $http.post('logout', {}).success(function () {
@@ -9,6 +37,8 @@ myApp.controller('TopbarController', ['$scope', '$http', '$location', function (
                 alert("Error : "+data);
             });
         };
+        
+        
     }]);
 
 myApp.controller('EmailController', ['$scope', function ($scope) {
